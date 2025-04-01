@@ -29,12 +29,14 @@ _mongoose["default"].connect(process.env.MONGO_URI, {}).then(function () {
 }); // Rutas
 
 
-app.use("/api", _routes["default"]); // Rutas para los clientes // Rutas para led
+app.use("/api", _routes["default"]); // Rutas para los clientes
 // Iniciar servidor
 
-var PORT = process.env.PORT || 5000;
-var ip = '192.168.100.100'; // Sustituye con la IP de tu red local
+var PORT = process.env.PORT; // Usa el puerto de Render o 5000 por defecto
+
+var ip = '0.0.0.0'; // Asegura que se escuche en todas las interfaces de red
 
 app.listen(PORT, ip, function () {
-  return console.log("\uD83D\uDE80 Servidor corriendo en http://".concat(ip, ":").concat(PORT));
-});
+  return console.log("\uD83D\uDE80 Servidor corriendo en http://localhost:".concat(PORT));
+} // Usa localhost o la URL pública de Render
+);

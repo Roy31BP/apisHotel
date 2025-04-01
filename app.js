@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 import cors from "cors";
 import RoutesApi from "./routes.js"; 
 
-
 // Configurar variables de entorno
 dotenv.config();
 
@@ -22,11 +21,11 @@ mongoose
   .catch((error) => console.log("❌ Error al conectar a MongoDB:", error));
 
 // Rutas
-app.use("/api", RoutesApi); // Rutas para los clientes // Rutas para led
+app.use("/api", RoutesApi); // Rutas para los clientes
 
 // Iniciar servidor
-const PORT = process.env.PORT || 5000;
-const ip = '192.168.100.100';  // Sustituye con la IP de tu red local
+const PORT = process.env.PORT;  // Usa el puerto de Render o 5000 por defecto
+const ip = '0.0.0.0';  // Asegura que se escuche en todas las interfaces de red
 app.listen(PORT, ip, () =>
-  console.log(`🚀 Servidor corriendo en http://${ip}:${PORT}`)
-);
+  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`)  // Usa localhost o la URL pública de Render
+); 
